@@ -1,21 +1,73 @@
 MIT License
 
-Copyright (c) 2026 ProductionSQL
+Copyright (c) 2026 Production SQL (productionsql.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this softwareHaving a public GitHub repository gives you an organic discovery channel, massive credibility with engineers, and a direct pipeline of traffic to your Gumroad kit and paid book.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Here is the turnkey setup for your repository.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+---
+
+### Step 1: Create the GitHub Repository
+1. Go to **GitHub** and click **New repository**.
+2. **Repository name:** `production-sql-health-check` (or `production-health-checks`).
+3. **Description:** `Instant, 100% read-only diagnostic SQL triage scripts for Oracle, PostgreSQL, and MySQL. Safe under heavy production load.`
+4. **Visibility:** **Public**.
+5. Leave "Add a README file" unchecked (we'll push our polished one directly).
+6. **Add .gitignore:** None (or select a generic one).
+7. **Choose a license:** **MIT License** (best for open-source adoption and developer trust).
+
+---
+
+### Step 2: The Polished `README.md` (Optimized for GitHub & Conversion)
+
+Create/update your `README.md` in the root folder with this content. It includes shields.io badges, visual code blocks, and clear callouts back to your Gumroad link and upcoming handbook:
+
+```markdown
+<div align="center">
+
+# ⚡ The 5-Minute Production SQL Health Check
+
+**Instant, lightweight, 100% read-only diagnostic triage scripts for Oracle, PostgreSQL, and MySQL.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Safety: 100% Read-Only](https://img.shields.io/badge/Safety-100%25%20Read--Only-00F2FE.svg)](#-production-safety-rules)
+[![Platform: Cloud & Self-Hosted](https://img.shields.io/badge/Platform-AWS%20RDS%20%7C%20Aurora%20%7C%20Bare--Metal-green.svg)](#-compatibility)
+[![Gumroad Download](https://img.shields.io/badge/Download-Free%20ZIP%20Bundle-orange.svg)](https://productionsql.gumroad.com/l/health-check)
+
+[Download Pre-Packaged .ZIP Bundle](https://productionsql.gumroad.com/l/health-check) • [Report Issue](https://github.com/ProductionSQL/production-sql-health-check/issues)
+
+</div>
+
+---
+
+## 🚨 Why This Exists
+
+When an incident fires at 2:00 AM and a production database spikes to 100% CPU or transactions queue up, on-call engineers don't have time to write diagnostic scripts from memory or click through slow web consoles.
+
+You need instant visibility into three things:
+1. **What is the engine waiting on right now?**
+2. **Who is blocking whom in the lock tree?**
+3. **Which runaway session or statement is thrashing I/O and memory?**
+
+This repository provides curated, isolated SQL scripts designed to execute safely under high load and answer those questions in under 5 minutes.
+
+---
+
+## ⚡ Production Safety Rules
+
+1. **100% Read-Only:** Queries only hit system catalogs, dynamic performance views (`v$`, `sys`, `information_schema`, `pg_stat*`), and session metrics. No DDL, no DML, zero locking.
+2. **Aggressive Row Limits:** Every query enforces strict limits (`LIMIT`, `ROWNUM`, or `FETCH FIRST`) to prevent buffer bloat or terminal lockups.
+3. **Zero Elevated OS Privilege Required:** Fully compatible with managed cloud environments where you lack host OS access.
+
+---
+
+## 🛠️ Engine Coverage & Quick Start
+
+### 1. PostgreSQL (12 through 17+)
+*Tested on AWS RDS PostgreSQL, Aurora PostgreSQL, and self-hosted instances.*
+
+```bash
+# Run the complete health check
+psql -h <host> -U <user> -d <database> -f postgres/postgres_full_triage.sql
